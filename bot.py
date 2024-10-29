@@ -9,6 +9,7 @@ import os
 load_dotenv()
 client = Client()
 client.login(os.getenv("HANDLE"), os.getenv("PASSWORD"))
+BASE = os.path.dirname(os.path.realpath(__file__))
 
 
 def get_year_progress():
@@ -75,7 +76,7 @@ def generate_progress_bar_image(progress):
     draw = ImageDraw.Draw(image)
 
     # Font for the progress bar text
-    font = ImageFont.truetype("pacifico.ttf", 64)
+    font = ImageFont.truetype(os.path.join(BASE, "pacifico.ttf"), 64)
     bar_width = 1100
     bar_thickness = 15
 
