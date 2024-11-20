@@ -10,7 +10,7 @@ load_dotenv()
 client = Client()
 client.login(os.getenv("HANDLE"), os.getenv("PASSWORD"))
 BASE = os.path.dirname(os.path.realpath(__file__))
-
+healthchecks_url=os.getenv("HEALTHCHECKS_ENDPOINT")
 
 def get_year_progress():
     """Calculates the progress of the current year in GMT as a percentage."""
@@ -153,3 +153,4 @@ image.save(img_byte_arr, format="PNG")
 img_byte_arr = img_byte_arr.getvalue()
 update_bluesky_banner(img_byte_arr)
 post_to_bluesky(progress)
+os.system(f"curl {healthchecks_url} > /dev/null")
